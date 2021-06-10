@@ -89,11 +89,12 @@ def draft_lottery(simulation=False):
                 print(f"{pick[0]}    | {pick[1]}")
             else:
                 print(f"{pick[0]}   | {pick[1]}")
-            sleep(5)
+            sleep(1)
 
 import sys
-if sys.argv[1] == "sim":
-    draft_lottery(simulation=True)
-else:
+try:
+    if sys.argv[1] == "sim":
+        draft_lottery(simulation=True)
+except:
     draft_lottery()
 
