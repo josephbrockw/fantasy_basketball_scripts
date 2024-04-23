@@ -3,18 +3,19 @@ from tqdm import tqdm
 from time import sleep
 
 odds = [
-    ("Jake", 140),
+    ("Casey", 140),
+    ("Sam", 140),
     ("Denton", 140),
-    ("TPayne", 140),
-    ("Joe W", 125),
+    ("Joe D", 125),
+    ("Ricky", 105),
+    ("Jordan", 90),
+    ("Jake", 75),
     ("Kit", 0),
-    ("Cho", 0),
-    ("Casey", 0),
-    ("Joe D", 0),
+    ("TPayne", 0),
     ("Morgan", 0),
     ("Curran", 0),
-    ("Sam", 0),
-    ("Jordan", 0),
+    ("Cho", 0),
+    ("Joe W", 0),
 ]
 
 def run_lottery():
@@ -43,18 +44,19 @@ def run_simulations():
         simulations.append(run_lottery())
 
     test = [
-        ["Jake", []],
-        ["Denton", []],
-        ["TPayne", []],
-        ["Joe W", []],
-        ["Kit", []],
-        ["Cho", []],
         ["Casey", []],
+        ["Sam", []],
+        ["Denton", []],
         ["Joe D", []],
+        ["Ricky", []],
+        ["Jordan", []],
+        ["Jake", []],
+        ["Kit", []],
+        ["TPayne", []],
         ["Morgan", []],
         ["Curran", []],
-        ["Sam", []],
-        ["Jordan", []]
+        ["Cho", []],
+        ["Joe W", []],
     ]
 
     for sim in tqdm(simulations):
@@ -63,7 +65,7 @@ def run_simulations():
             test[i][1].append(sim.index(test[i][0]) + 1)
 
     def calculate_odds(sims, pick):
-        not_pick = [x for x in sims if x > pick]
+        not_pick = [x for x in sims if x[0] != pick]
         return round(1 - (len(not_pick) / len(sims)), 3)
 
     for i in test:
@@ -92,7 +94,7 @@ def draft_lottery(simulation=False):
 
 import sys
 try:
-    if sys.argv[1] == "sim":
+    if len(sys.argv) > 1 and sys.argv[1] == "sim":
         draft_lottery(simulation=True)
     else:
         draft_lottery()
